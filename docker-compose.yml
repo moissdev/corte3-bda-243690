@@ -13,5 +13,12 @@ services:
       - clinica_vet_data:/var/lib/postgresql/data
       - ./backend:/scripts
 
+  redis:
+    image: redis:7-alpine
+    container_name: clinica_vet_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
 volumes:
   clinica_vet_data:
