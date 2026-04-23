@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: vettrack_db
+    restart: unless-stopped
+    env_file:
+      - .env.local
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - clinica_vet_data:/var/lib/postgresql/data
+      - ./backend:/scripts
+
+volumes:
+  clinica_vet_data:
